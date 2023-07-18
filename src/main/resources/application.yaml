@@ -2,7 +2,11 @@ server:
   port: 8081
 spring:
   application:
+<<<<<<< HEAD
     name: qsld
+=======
+    name: lsdp
+>>>>>>> 23572cce23f4329872f7e451f0ef7f93578229b2
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/leshidianping?useSSL=false&serverTimezone=UTC
@@ -21,6 +25,7 @@ spring:
     database: 1
   jackson:
     default-property-inclusion: non_null # JSON处理时忽略非空字段
+<<<<<<< HEAD
   rabbitmq:
     host: 192.168.220.132
     port: 5672
@@ -35,3 +40,10 @@ mybatis-plus:
 logging:
   level:
     com.qsld: debug
+=======
+mybatis-plus:
+  type-aliases-package: com.lsdp.entity # 别名扫描包
+logging:
+  level:
+    com.lsdp: debug
+>>>>>>> 23572cce23f4329872f7e451f0ef7f93578229b2

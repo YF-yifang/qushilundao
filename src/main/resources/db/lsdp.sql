@@ -5,7 +5,11 @@
  Source Server Type    : MySQL
  Source Server Version : 50622
  Source Host           : localhost:3306
+<<<<<<< HEAD
  Source Schema         : qsld
+=======
+ Source Schema         : hmdp
+>>>>>>> 23572cce23f4329872f7e451f0ef7f93578229b2
 
  Target Server Type    : MySQL
  Target Server Version : 50622
