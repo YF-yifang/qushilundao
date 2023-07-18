@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
 import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.RandomUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qsld.dto.LoginFormDTO;
 import com.qsld.dto.Result;
@@ -12,11 +13,14 @@ import com.qsld.entity.User;
 import com.qsld.mapper.UserMapper;
 import com.qsld.service.IUserService;
 import com.qsld.utils.RegexUtils;
+import com.qsld.utils.UserHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import java.util.HashMap;
@@ -102,6 +106,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         stringRedisTemplate.expire(LOGIN_USER_KEY + token, LOGIN_USER_TTL, TimeUnit.MINUTES);
         // 8.返回token
         return Result.ok(token);
+    }
+
+    @Override
+    public Result logout(HttpServletRequest request) {
+        //删除Token
+        String token = request.getHeader("authorization");
+        if (StrUtil.isBlank(token)) {
+            return Result.fail("退出失败");
+        }
+        stringRedisTemplate.delete(LOGIN_USER_KEY + token);
+        //删除ThreadLocal中的用户信息
+        UserHolder.removeUser();
+        return Result.ok("退出成功");
     }
 
     private User createUserWithPhone(String phone) {

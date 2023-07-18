@@ -11,9 +11,11 @@ import com.qsld.service.IUserInfoService;
 import com.qsld.service.IUserService;
 import com.qsld.utils.UserHolder;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -59,9 +61,9 @@ public class UserController {
      * @return 无
      */
     @PostMapping("/logout")
-    public Result logout(){
+    public Result logout(HttpServletRequest request){
         // TODO 实现登出功能
-        return Result.fail("功能未完成");
+        return userService.logout(request);
     }
 
     @GetMapping("/me")
