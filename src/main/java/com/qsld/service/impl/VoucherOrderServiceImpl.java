@@ -122,9 +122,6 @@ public class VoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vou
         voucherOrder.setVoucherId(voucherId);
         //将订单信息发送给RabbitMQ
         rabbitTemplate.convertAndSend("orderExchange", "order", voucherOrder);
-
-        //获取代理对象（事务）
-//        proxy = (IVoucherOrderService) AopContext.currentProxy();
         //3.返回订单id
         return Result.ok(orderId);
     }

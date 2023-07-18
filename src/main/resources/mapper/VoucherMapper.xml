@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<<<<<<< HEAD
+
 <mapper namespace="com.qsld.mapper.VoucherMapper">
 
     <select id="queryVoucherOfShop" resultType="com.qsld.entity.Voucher" parameterType="java.lang.Long">
-=======
-<mapper namespace="com.lsdp.mapper.VoucherMapper">
-
-    <select id="queryVoucherOfShop" resultType="com.lsdp.entity.Voucher" parameterType="java.lang.Long">
->>>>>>> 23572cce23f4329872f7e451f0ef7f93578229b2
         SELECT
             v.`id`, v.`shop_id`, v.`title`, v.`sub_title`, v.`rules`, v.`pay_value`,
             v.`actual_value`, v.`type`, sv.`stock` , sv.begin_time , sv.end_time
